@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  
+  <script src="dist/fuckmyscroll.min.js"></script>
+  
+  <script>
+    window.onload = function () {  
+      const fms = new FuckMyScroll({
+        speed: 7,
+        init: function (target) {
+          console.log('Going to #' + target);
+        },
+        end: function (target) {
+          console.log('Here we are!');
+        }
+      });
+      fms.init();
+    };
+  </script>
+  
+  <style>
+    #cat {
+      margin-top: 500px;
+      float: left;
+    }
+    
+    #dog {
+      margin-top: 2000px;
+      float: left;
+    }
+    
+    #horse {
+      margin-left: 2000px;
+      float: left;
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="cat">
+    <img src="http://afv.com/wp-content/uploads/2014/12/confused-kitty.jpg" alt="cat image" width="400">
+  </div>
+  
+  <div id="horse">
+    <img src="https://i.ytimg.com/vi/qrfcTxLP7lw/maxresdefault.jpg" alt="horse image" width="400">
+  </div>
+  
+  <div id="dog">
+    <img src="http://stuffpoint.com/dogs/image/307235-dogs-cute-dog.jpg" alt="dog image" width="400">
+  </div>
+
+  <nav style="clear: both;">
+    <li href="cat" fmscroll>Cat</li>
+    <li href="dog" fmscroll>Dog</li>
+    <li href="horse" fmscroll>Horse</li>
+  </nav>
+</body>
+</html>

@@ -12,7 +12,7 @@ gulp.task('build',  () => {
 });
 
 gulp.task('minify', () => {
-  gulp.src('./dist/fuckmyscroll.min.js')
+  gulp.src('./dist/fuckmyscroll.js')
     .pipe(uglify())
     .pipe(rename('fuckmyscroll.min.js'))
     .pipe(gulp.dest('./dist'));
