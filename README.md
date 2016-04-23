@@ -2,6 +2,8 @@ FuckMyScroll
 ============
 Animated scrolling to certain point or anchor.
 
+Your can see a demo [here](http://codepen.io/GabrielJMJ/pen/RaBJWo).
+
 ## Installing
 Install via [npm](http://npmjs.com/package/fuckmyscroll)
 ```bash
