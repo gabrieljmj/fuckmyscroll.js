@@ -1,0 +1,98 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'publish' ]
+2 info using npm@3.3.6
+3 info using node@v5.0.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: 'C:\\Users\\Usuario\\Google Drive\\workspace\\var\\www\\gabrieljmj\\fms',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory C:\Users\Usuario\AppData\Roaming\npm-cache\fuckmyscroll\1.0.0\package.tgz not in flight; packing
+9 info lifecycle fuckmyscroll@1.0.0~prepublish: fuckmyscroll@1.0.0
+10 silly lifecycle fuckmyscroll@1.0.0~prepublish: no script for prepublish, continuing
+11 verbose tar pack [ 'C:\\Users\\Usuario\\AppData\\Roaming\\npm-cache\\fuckmyscroll\\1.0.0\\package.tgz',
+11 verbose tar pack   'C:\\Users\\Usuario\\Google Drive\\workspace\\var\\www\\gabrieljmj\\fms' ]
+12 verbose tarball C:\Users\Usuario\AppData\Roaming\npm-cache\fuckmyscroll\1.0.0\package.tgz
+13 verbose folder C:\Users\Usuario\Google Drive\workspace\var\www\gabrieljmj\fms
+14 verbose addLocalTarball adding from inside cache C:\Users\Usuario\AppData\Roaming\npm-cache\fuckmyscroll\1.0.0\package.tgz
+15 silly cache afterAdd fuckmyscroll@1.0.0
+16 verbose afterAdd C:\Users\Usuario\AppData\Roaming\npm-cache\fuckmyscroll\1.0.0\package\package.json not in flight; writing
+17 verbose afterAdd C:\Users\Usuario\AppData\Roaming\npm-cache\fuckmyscroll\1.0.0\package\package.json written
+18 silly publish { name: 'fuckmyscroll',
+18 silly publish   version: '1.0.0',
+18 silly publish   description: 'Not a direct scroll',
+18 silly publish   main: '',
+18 silly publish   repository: { type: 'git', url: '' },
+18 silly publish   keywords: [ 'scroll' ],
+18 silly publish   author: { name: 'Gabriel Jacinto aka. GabrielJMJ' },
+18 silly publish   license: 'MIT',
+18 silly publish   devDependencies:
+18 silly publish    { 'babel-preset-es2015': '^6.6.0',
+18 silly publish      gulp: '^3.9.1',
+18 silly publish      'gulp-babel': '^6.1.2',
+18 silly publish      'gulp-rename': '^1.2.2',
+18 silly publish      'gulp-uglify': '^1.5.3' },
+18 silly publish   readme: 'FuckMyScroll\r\n============\r\nAnimated scrolling to certain point or anchor.\r\n\r\nYour can see a demo [here](http://codepen.io/GabrielJMJ/pen/RaBJWo).\r\n\r\n## Installing\r\nInstall via [npm](http://npmjs.com/package/fuckmyscroll)\r\n```bash\r\n$ npm install --save fuckmyscroll\r\n```\r\n\r\n## Usage\r\nIn your script, create an instance of ```FuckMyScroll```\r\n```js\r\nconst fms = new FuckMyScroll();\r\nfms.init();\r\n```\r\n\r\n### Working with anchors\r\nTruly is not necessary be an anchor, but have ```href``` and ```fmscroll``` attributes.\r\n```html\r\n<button href="#about" fmscroll>About</button>\r\n\r\n<!-- Goes to -->\r\n<article id="about">\r\n  <!-- ... -->\r\n</article>\r\n```\r\n\r\n### Going to page points\r\nScroll by cordenates\r\n```js\r\nlet X = 0,\r\n  Y = 1200;\r\n\r\nfms.scrollTo(X, Y);\r\n```\r\n\r\n### Options\r\n```js\r\nconst fms = new FuckMyScroll({\r\n  speed: 14, // 14px/ms,\r\n  init: () => {},\r\n  end: () => {}\r\n});\r\n```\r\n\r\n* **speed**\r\nIt is possible determine the speed, measured in ```pixels/milliseconds```. Default is ```7px/ms```.\r\n```js\r\n{\r\n  speed: 20 // 20px/ms\r\n}\r\n```\r\n* **init**\r\nCallback executed on proccess initiation.\r\n```js\r\n{\r\n  init: () => { // ... }\r\n}\r\n```\r\n\r\n* **end**\r\nCallback executed on proccess finalization.\r\n```js\r\n{\r\n  end: () => { // ... }\r\n}\r\n```\r\n',
+18 silly publish   readmeFilename: 'README.md',
+18 silly publish   gitHead: '38fdc6cd207b2c62ebb44feebbe6fe3ebb9dde49',
+18 silly publish   _id: 'fuckmyscroll@1.0.0',
+18 silly publish   scripts: {},
+18 silly publish   _shasum: '08a19f068dbdbb65f52d7dd87fb54e88aff5701b',
+18 silly publish   _from: '.' }
+19 verbose getPublishConfig undefined
+20 silly mapToRegistry name fuckmyscroll
+21 silly mapToRegistry using default registry
+22 silly mapToRegistry registry https://registry.npmjs.org/
+23 silly mapToRegistry uri https://registry.npmjs.org/fuckmyscroll
+24 verbose publish registryBase https://registry.npmjs.org/
+25 silly publish uploading C:\Users\Usuario\AppData\Roaming\npm-cache\fuckmyscroll\1.0.0\package.tgz
+26 verbose request uri https://registry.npmjs.org/fuckmyscroll
+27 verbose request sending authorization for write operation
+28 info attempt registry request try #1 at 00:34:50
+29 verbose request id 1d4906afddbb9793
+30 http request PUT https://registry.npmjs.org/fuckmyscroll
+31 http 403 https://registry.npmjs.org/fuckmyscroll
+32 verbose headers { 'content-type': 'application/json',
+32 verbose headers   'cache-control': 'max-age=300',
+32 verbose headers   'content-length': '128',
+32 verbose headers   'accept-ranges': 'bytes',
+32 verbose headers   date: 'Sat, 23 Apr 2016 03:34:58 GMT',
+32 verbose headers   via: '1.1 varnish',
+32 verbose headers   connection: 'keep-alive',
+32 verbose headers   'x-served-by': 'cache-jfk1047-JFK',
+32 verbose headers   'x-cache': 'MISS',
+32 verbose headers   'x-cache-hits': '0',
+32 verbose headers   'x-timer': 'S1461382496.475621,VS0,VE1690',
+32 verbose headers   vary: 'Accept-Encoding' }
+33 verbose request invalidating C:\Users\Usuario\AppData\Roaming\npm-cache\registry.npmjs.org\fuckmyscroll on PUT
+34 error publish Failed PUT 403
+35 verbose stack Error: "You cannot publish over the previously published version 1.0.0. Try bumping the version to 2.0.0" : fuckmyscroll
+35 verbose stack     at makeError (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:264:12)
+35 verbose stack     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:252:14)
+35 verbose stack     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:172:14)
+35 verbose stack     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:198:22)
+35 verbose stack     at emitTwo (events.js:87:13)
+35 verbose stack     at Request.emit (events.js:172:7)
+35 verbose stack     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1063:14)
+35 verbose stack     at emitOne (events.js:82:20)
+35 verbose stack     at Request.emit (events.js:169:7)
+35 verbose stack     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1009:12)
+36 verbose statusCode 403
+37 verbose pkgid fuckmyscroll
+38 verbose cwd C:\Users\Usuario\Google Drive\workspace\var\www\gabrieljmj\fms
+39 error Windows_NT 6.1.7601
+40 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "publish"
+41 error node v5.0.0
+42 error npm  v3.3.6
+43 error code E403
+44 error "You cannot publish over the previously published version 1.0.0. Try bumping the version to 2.0.0" : fuckmyscroll
+45 error If you need help, you may report this error at:
+45 error     <https://github.com/npm/npm/issues>
+46 verbose exit [ 1, true ]
