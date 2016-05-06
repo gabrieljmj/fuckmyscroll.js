@@ -1,0 +1,20 @@
+#cat {
+  margin-top: 500px;
+}
+    
+#dog {
+  margin-top: 2000px;
+}
+    
+#horse {
+  margin-left: 2000px;
+}
+
+#cat, #dog, #horse {
+  float: left;
+}
+
+#to-top {
+  position: fixed;
+  bottom: 0;
+}
