@@ -59,12 +59,14 @@ class FuckMyScroll {
       let currY = window.scrollY,
         currX = window.scrollX,
         speed = this.opts.speed;
-
+      
       // Only execute if the Y distance is under 1
       // I DON'T KNOW WHY, BUT WITH OTHER WAY DID NOT WORK
       if (
-        (currY > posY && (currY - posY) > 1)
-        || (posY > currY && (posY - currY) > 1)
+        (currY > posY && (currY - posY) > 1) ||
+        (posY > currY && (posY - currY) > 1) ||
+        (posX > currX && (posX - currY) > 1) ||
+        (currX > posX && (currX - posX) > 1)
       ) {
         let distY,
           distX;
@@ -99,11 +101,13 @@ class FuckMyScroll {
         if (!!distY || !!distX) {
           // If is not in the expected point, keep scrolling
           setTimeout(function () {
-              that.scrollTo(posX, posY).then(resolve);
+            that.scrollTo(posX, posY).then(resolve);
           }, 1);
         } else {
           resolve();
         }
+      } else {
+        resolve();
       }
     });
   }

@@ -76,7 +76,7 @@ var FuckMyScroll = function () {
 
         // Only execute if the Y distance is under 1
         // I DON'T KNOW WHY, BUT WITH OTHER WAY DID NOT WORK
-        if (currY > posY && currY - posY > 1 || posY > currY && posY - currY > 1) {
+        if (currY > posY && currY - posY > 1 || posY > currY && posY - currY > 1 || posX > currX && posX - currY > 1 || currX > posX && currX - posX > 1) {
           var distY = void 0,
               distX = void 0;
 
@@ -115,6 +115,8 @@ var FuckMyScroll = function () {
           } else {
             resolve();
           }
+        } else {
+          resolve();
         }
       });
     }
