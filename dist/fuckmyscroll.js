@@ -13,16 +13,24 @@ var FuckMyScroll = function () {
   /**
    * Set options
    *
-   * @param {Object} opts {speed: [N]pixels/millisecond, init: callable, end: callable}
+   * @param {Integer} speed [N]pixels/milliseconds
+   * @param {Function} init
+   * @param {Function} end
+   * @param {Object} context
    */
+  function FuckMyScroll(_ref) {
+    var speed = _ref.speed,
+        init = _ref.init,
+        end = _ref.end;
+    var context = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : window;
 
-  function FuckMyScroll(opts) {
     _classCallCheck(this, FuckMyScroll);
 
     this.opts = {};
-    this.opts.speed = opts.speed || 7;
-    this.opts.init = opts.init || function () {};
-    this.opts.end = opts.end || function () {};
+    this.opts.speed = speed || 7;
+    this.opts.init = init || function () {};
+    this.opts.end = end || function () {};
+    this.context = context;
   }
 
   _createClass(FuckMyScroll, [{
@@ -30,18 +38,19 @@ var FuckMyScroll = function () {
     value: function init() {
       // Catch all elements using fmscroll attribute
       var elements = document.querySelectorAll('*[fmscroll]');
-      var that = this;
 
       [].forEach.call(elements, function (el) {
         var target = el.getAttribute('href');
 
         el.onclick = function (e) {
+          var _this = this;
+
           e.preventDefault();
 
-          var oX = window.scrollX,
-              oY = window.scrollY;
+          var oX = this.context.scrollX,
+              oY = this.context.scrollY;
           // Go to point zero to catch the real distance from page top
-          window.scroll(0, 0);
+          this.context.scroll(0, 0);
 
           var id = target.substr(0, 1) === '#' ? target.substr(1) : target,
               targetEl = document.getElementById(id),
@@ -50,14 +59,14 @@ var FuckMyScroll = function () {
               x = posInfo.left;
 
           // Back to original point
-          window.scroll(oX, oY);
+          this.context.scroll(oX, oY);
 
           // Fires the init event
-          that.opts.init(id);
+          this.opts.init(id);
 
-          that.scrollTo(x, y).then(function () {
+          this.scrollTo(x, y).then(function () {
             // Fires the end event
-            that.opts.end(id);
+            _this.opts.end(id);
           });
         };
       });
@@ -65,14 +74,12 @@ var FuckMyScroll = function () {
   }, {
     key: 'scrollTo',
     value: function scrollTo(posX, posY) {
-      var _this = this;
-
       var that = this;
 
       return new Promise(function (resolve) {
-        var currY = window.scrollY,
-            currX = window.scrollX,
-            speed = _this.opts.speed;
+        var currY = that.context.scrollY,
+            currX = that.context.scrollX,
+            speed = that.opts.speed;
 
         // Only execute if the Y distance is under 1
         // I DON'T KNOW WHY, BUT WITH OTHER WAY DID NOT WORK
@@ -101,10 +108,10 @@ var FuckMyScroll = function () {
             distX = posX - currX > speed ? currX + speed : currX + (posX - currX);
           }
 
-          window.scroll(distX, distY);
+          that.context.scroll(distX, distY);
 
-          distY = currY !== window.scrollY ? distY : 0;
-          distX = currX !== window.scrollX ? distX : 0;
+          distY = currY !== that.context.scrollY ? distY : 0;
+          distX = currX !== that.context.scrollX ? distX : 0;
 
           // Check if is the end of the page
           if (!!distY || !!distX) {
@@ -126,7 +133,7 @@ var FuckMyScroll = function () {
 }();
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) === 'object') {
   module.exports = FuckMyScroll;

@@ -7,19 +7,22 @@ class FuckMyScroll {
   /**
    * Set options
    *
-   * @param {Object} opts {speed: [N]pixels/millisecond, init: callable, end: callable}
+   * @param {Integer} speed [N]pixels/milliseconds
+   * @param {Function} init
+   * @param {Function} end
+   * @param {Object} context
    */
-  constructor(opts) {
+  constructor({speed, init, end}, context = window) {
     this.opts = {};
-    this.opts.speed = opts.speed || 7;
-    this.opts.init = opts.init || function () {};
-    this.opts.end = opts.end || function () {};
+    this.opts.speed = speed || 7;
+    this.opts.init = init || function () {};
+    this.opts.end = end || function () {};
+    this.context = context;
   }
 
   init() {
     // Catch all elements using fmscroll attribute
     const elements = document.querySelectorAll('*[fmscroll]');
-    let that = this;
 
     [].forEach.call(elements, el => {
       let target = el.getAttribute('href');
@@ -27,10 +30,10 @@ class FuckMyScroll {
       el.onclick = function (e) {
         e.preventDefault();
 
-        let oX = window.scrollX,
-          oY = window.scrollY;
+        let oX = this.context.scrollX,
+          oY = this.context.scrollY;
         // Go to point zero to catch the real distance from page top
-        window.scroll(0, 0);
+        this.context.scroll(0, 0);
           
         let id = target.substr(0, 1) === '#' ? target.substr(1) : target,
           targetEl = document.getElementById(id),
@@ -39,14 +42,14 @@ class FuckMyScroll {
           x = posInfo.left;
 
         // Back to original point
-        window.scroll(oX, oY);
+        this.context.scroll(oX, oY);
 
         // Fires the init event
-        that.opts.init(id);
+        this.opts.init(id);
 
-        that.scrollTo(x, y).then(() => {
+        this.scrollTo(x, y).then(() => {
           // Fires the end event
-          that.opts.end(id);
+          this.opts.end(id);
         });
       };
     });
@@ -56,9 +59,9 @@ class FuckMyScroll {
     let that = this;
 
     return new Promise(resolve => {
-      let currY = window.scrollY,
-        currX = window.scrollX,
-        speed = this.opts.speed;
+      let currY = that.context.scrollY,
+        currX = that.context.scrollX,
+        speed = that.opts.speed;
       
       // Only execute if the Y distance is under 1
       // I DON'T KNOW WHY, BUT WITH OTHER WAY DID NOT WORK
@@ -92,10 +95,10 @@ class FuckMyScroll {
           distX = (posX - currX) > speed ? currX + speed : currX + (posX - currX);
         }
 
-        window.scroll(distX, distY);
+        that.context.scroll(distX, distY);
 
-        distY = currY !== window.scrollY ? distY : 0;
-        distX = currX !== window.scrollX ? distX : 0;
+        distY = currY !== that.context.scrollY ? distY : 0;
+        distX = currX !== that.context.scrollX ? distX : 0;
 
         // Check if is the end of the page
         if (!!distY || !!distX) {
