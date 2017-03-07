@@ -25,7 +25,9 @@ class FuckMyScroll {
     const elements = document.querySelectorAll('*[fmscroll]');
 
     [].forEach.call(elements, el => {
-      let target = el.getAttribute('href');
+      let target = el.getAttribute('href'),
+        init = this.context[el.getAttribute('fms-init')] || function () {},
+        end = this.context[el.getAttribute('fms-end')] || function () {};
         
       el.onclick = function (e) {
         e.preventDefault();
@@ -44,12 +46,18 @@ class FuckMyScroll {
         // Back to original point
         this.context.scroll(oX, oY);
 
-        // Fires the init event
+        // Fires the global init event
         this.opts.init(id);
 
+        // Fires the element init event
+        init();
+
         this.scrollTo(x, y).then(() => {
-          // Fires the end event
+          // Fires the global end event
           this.opts.end(id);
+
+          // Fires the element end event
+          end();
         });
       };
     });

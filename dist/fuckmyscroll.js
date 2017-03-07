@@ -36,14 +36,18 @@ var FuckMyScroll = function () {
   _createClass(FuckMyScroll, [{
     key: 'init',
     value: function init() {
+      var _this = this;
+
       // Catch all elements using fmscroll attribute
       var elements = document.querySelectorAll('*[fmscroll]');
 
       [].forEach.call(elements, function (el) {
-        var target = el.getAttribute('href');
+        var target = el.getAttribute('href'),
+            init = _this.context[el.getAttribute('fms-init')] || function () {},
+            end = _this.context[el.getAttribute('fms-end')] || function () {};
 
         el.onclick = function (e) {
-          var _this = this;
+          var _this2 = this;
 
           e.preventDefault();
 
@@ -61,12 +65,18 @@ var FuckMyScroll = function () {
           // Back to original point
           this.context.scroll(oX, oY);
 
-          // Fires the init event
+          // Fires the global init event
           this.opts.init(id);
 
+          // Fires the element init event
+          init();
+
           this.scrollTo(x, y).then(function () {
-            // Fires the end event
-            _this.opts.end(id);
+            // Fires the global end event
+            _this2.opts.end(id);
+
+            // Fires the element end event
+            end();
           });
         };
       });
