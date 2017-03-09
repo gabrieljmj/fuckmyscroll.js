@@ -36,25 +36,23 @@ var FuckMyScroll = function () {
   _createClass(FuckMyScroll, [{
     key: 'init',
     value: function init() {
-      var _this = this;
-
       // Catch all elements using fmscroll attribute
       var elements = document.querySelectorAll('*[fmscroll]');
 
+      var that = this;
+
       [].forEach.call(elements, function (el) {
         var target = el.getAttribute('href'),
-            init = _this.context[el.getAttribute('fms-init')] || function () {},
-            end = _this.context[el.getAttribute('fms-end')] || function () {};
+            init = that.context[el.getAttribute('fms-init')] || function () {},
+            end = that.context[el.getAttribute('fms-end')] || function () {};
 
         el.onclick = function (e) {
-          var _this2 = this;
-
           e.preventDefault();
 
-          var oX = this.context.scrollX,
-              oY = this.context.scrollY;
+          var oX = that.context.scrollX,
+              oY = that.context.scrollY;
           // Go to point zero to catch the real distance from page top
-          this.context.scroll(0, 0);
+          that.context.scroll(0, 0);
 
           var id = target.substr(0, 1) === '#' ? target.substr(1) : target,
               targetEl = document.getElementById(id),
@@ -63,17 +61,17 @@ var FuckMyScroll = function () {
               x = posInfo.left;
 
           // Back to original point
-          this.context.scroll(oX, oY);
+          that.context.scroll(oX, oY);
 
           // Fires the global init event
-          this.opts.init(id);
+          that.opts.init(id);
 
           // Fires the element init event
           init();
 
-          this.scrollTo(x, y).then(function () {
+          that.scrollTo(x, y).then(function () {
             // Fires the global end event
-            _this2.opts.end(id);
+            that.opts.end(id);
 
             // Fires the element end event
             end();

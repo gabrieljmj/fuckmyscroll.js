@@ -24,18 +24,20 @@ class FuckMyScroll {
     // Catch all elements using fmscroll attribute
     const elements = document.querySelectorAll('*[fmscroll]');
 
+    let that = this;
+
     [].forEach.call(elements, el => {
       let target = el.getAttribute('href'),
-        init = this.context[el.getAttribute('fms-init')] || function () {},
-        end = this.context[el.getAttribute('fms-end')] || function () {};
+        init = that.context[el.getAttribute('fms-init')] || function () {},
+        end = that.context[el.getAttribute('fms-end')] || function () {};
         
       el.onclick = function (e) {
         e.preventDefault();
 
-        let oX = this.context.scrollX,
-          oY = this.context.scrollY;
+        let oX = that.context.scrollX,
+          oY = that.context.scrollY;
         // Go to point zero to catch the real distance from page top
-        this.context.scroll(0, 0);
+        that.context.scroll(0, 0);
           
         let id = target.substr(0, 1) === '#' ? target.substr(1) : target,
           targetEl = document.getElementById(id),
@@ -44,17 +46,17 @@ class FuckMyScroll {
           x = posInfo.left;
 
         // Back to original point
-        this.context.scroll(oX, oY);
+        that.context.scroll(oX, oY);
 
         // Fires the global init event
-        this.opts.init(id);
+        that.opts.init(id);
 
         // Fires the element init event
         init();
 
-        this.scrollTo(x, y).then(() => {
+        that.scrollTo(x, y).then(() => {
           // Fires the global end event
-          this.opts.end(id);
+          that.opts.end(id);
 
           // Fires the element end event
           end();
