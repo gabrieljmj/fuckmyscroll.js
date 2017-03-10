@@ -70,23 +70,24 @@ Callback executed on proccess finalization.
 ```
 
 ### Events
+
 It is possible execute specific events for each anchors using ```fms-init``` and ```fms-end``` attributes with **global functions**:
 
 ```html
 <a href="#about" fmsscroll fms-init="prepareAbout" fms-end="showAbout">About</a>
 
 <script>
-/* Global scope */
-function prepareAbout() {
+  /* Global scope */
+  function prepareAbout() {
     //...
-}
+  }
 
-function showAbout() { 
+  function showAbout() { 
     // ...
-}
+  }
 
-window.onload = () => {
+  window.onload = () => {
     // ...
-}
+  }
 </script>
 ```
